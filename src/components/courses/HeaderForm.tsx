@@ -18,17 +18,13 @@ export const HeaderForm = async () => {
   const classGroups = response.data.data;
 
   return (
-    <div
-      className={cn(
-        "flex sm:flex-nowrap flex-wrap sm:w-8/12 w-full space-x-3",
-        andika.className
-      )}
-    >
+    <div className={cn("flex   space-x-3", andika.className)}>
       <ClassDropdownMenu classGroups={classGroups} />
       <TermDropdownMenu />
       <SearchInput />
-      <button className="inline-flex rounded-xl md:min-w-[150px] justify-center items-center border-[#191C2D] border-2 bg-[#7CF5B2]">
-        Create note <Plus className="ml-2 w-4 h-4" />
+      <button className="inline-flex md:px-0 px-3 rounded-xl w-44 justify-center items-center border-[#191C2D] border-2 bg-[#7CF5B2]">
+        <span className="text-[12px] md:text-[1rem]">Create note</span>{" "}
+        <Plus className="ml-2 w-4 h-4" />
       </button>
     </div>
   );
