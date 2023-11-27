@@ -18,17 +18,11 @@ export function ClassDropdownMenu({ classGroups }: { classGroups: Group[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const classGroupId = searchParams.get("classGroupId");
-  const groupStore = useGroupStore();
-
-  React.useEffect(() => {
-    if (classGroupId) groupStore.setGroup(classGroupId);
-  }, []);
 
   return (
     <Select
       defaultValue={classGroupId!}
       onValueChange={(val) => {
-        groupStore.setGroup(val);
         router.push(`/?classGroupId=${val}`);
       }}
     >

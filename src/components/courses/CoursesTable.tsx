@@ -1,5 +1,4 @@
 "use client";
-import { useGroupStore } from "@/hooks/use-group-store";
 import { useSubjects } from "@/hooks/use-subjects";
 import { useClassNotes } from "@/hooks/use-class-notes";
 import { cn } from "@/lib/cn";
@@ -15,6 +14,7 @@ import { useSearchStore } from "@/hooks/use-search-store";
 export const CoursesTable = () => {
   const searchParams = useSearchParams();
   const classGroupId = searchParams.get("classGroupId");
+
   if (!classGroupId)
     return (
       <div className="w-full h-full flex justify-center items-center text-xl">
@@ -81,7 +81,7 @@ const CourseLessonClient = ({ subjectId }: { subjectId: string }) => {
   });
   if (classNotes.isLoading && !classNotes.data)
     return (
-      <div className="flex items-center justify-center w-full h-[70vh]">
+      <div className="flex items-center justify-center w-5/6 h-[70vh]">
         <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
           <svg
             fill="none"
@@ -167,9 +167,11 @@ const CourseLessonClient = ({ subjectId }: { subjectId: string }) => {
 };
 const CourseSubjectSideHeader = () => {
   const searchParams = useSearchParams();
+
+  const classGroupId = searchParams.get("classGroupId");
   const router = useRouter();
-  const groupStore = useGroupStore();
-  const subjects = useSubjects(groupStore.currentGroup!);
+
+  const subjects = useSubjects(classGroupId!);
   const changeSubjectParams = (val: string) => {
     console.log("testssts");
     const optionSearchParams = new URLSearchParams(searchParams.toString());

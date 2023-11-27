@@ -29,7 +29,7 @@ export const useClassNoteSearch = ({ dataSet, keys }: IUseSearchProps) => {
     const searchResults = fuse.search(searchStore.currentSearch);
 
     return searchResults
-      .filter((fuseResult) => fuseResult?.score < SCORE_THRESHOLD)
+      .filter((fuseResult) => fuseResult?.score! < SCORE_THRESHOLD)
       .map((fuseResult) => fuseResult.item);
   }, [fuse, searchStore.currentSearch, dataSet]);
 
